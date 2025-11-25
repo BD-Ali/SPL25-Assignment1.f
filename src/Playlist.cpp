@@ -21,6 +21,53 @@ Playlist::~Playlist() {
     track_count = 0;
 }
 
+// Copy constructor
+Playlist::Playlist(const Playlist& other)
+    // initialize members
+    : head(nullptr), playlist_name(other.playlist_name), track_count(0) {
+    #ifdef DEBUG
+    std::cout << "Copy constructing playlist: " << other.playlist_name << std::endl;
+    #endif
+    PlaylistNode* current = other.head;
+    while (current) {
+        add_track(current->track);
+        current = current->next;
+    }
+}
+
+
+// Copy assignment operator
+Playlist& Playlist::operator=(const Playlist& other) {
+    #ifdef DEBUG
+    std::cout << "Copy assigning playlist: " << other.playlist_name << std::endl;
+    #endif
+    if (this != &other) {
+        // Clean up existing data
+        PlaylistNode* current = head;
+        while (current) {
+            PlaylistNode* to_delete = current;
+            current = current->next;
+            delete to_delete;
+        }
+        head = nullptr;
+        track_count = 0;
+
+        // Copy from other
+        playlist_name = other.playlist_name;
+        current = other.head;
+        while (current) {
+            add_track(current->track);
+            current = current->next;
+        }
+    }
+    return *this;
+}
+
+
+
+
+    
+
 void Playlist::add_track(AudioTrack* track) {
     if (!track) {
         std::cout << "[Error] Cannot add null track to playlist" << std::endl;
