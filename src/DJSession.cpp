@@ -189,16 +189,6 @@ void DJSession::simulate_dj_performance() {
             
             // Print summary after playlist completion
             print_session_summary();
-            
-            // Reset statistics for next playlist
-            stats.tracks_processed = 0;
-            stats.cache_hits = 0;
-            stats.cache_misses = 0;
-            stats.cache_evictions = 0;
-            stats.deck_loads_a = 0;
-            stats.deck_loads_b = 0;
-            stats.transitions = 0;
-            stats.errors = 0;
         }
         
         std::cout << "Session cancelled by user or all playlists played." << std::endl;
@@ -234,16 +224,6 @@ void DJSession::simulate_dj_performance() {
                 mixing_service.displayDeckStatus();
             }
             print_session_summary();
-            
-            // Reset statistics for next playlist
-            stats.tracks_processed = 0;
-            stats.cache_hits = 0;
-            stats.cache_misses = 0;
-            stats.cache_evictions = 0;
-            stats.deck_loads_a = 0;
-            stats.deck_loads_b = 0;
-            stats.transitions = 0;
-            stats.errors = 0;
         }
         
         std::cout << "Session cancelled by user or all playlists played." << std::endl;
