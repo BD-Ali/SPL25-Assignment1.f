@@ -67,9 +67,9 @@ AudioTrack& AudioTrack::operator=(const AudioTrack& other) {
         this->artists = other.artists;
         this->duration_seconds = other.duration_seconds;
         this->bpm = other.bpm;
-        this->waveform_data = new double[waveform_size];
-
+        this->waveform_data = new double[other.waveform_size];
         this->waveform_size = other.waveform_size;
+        
         for (size_t i = 0; i < waveform_size; ++i) {
             this->waveform_data[i] = other.waveform_data[i];
         }
